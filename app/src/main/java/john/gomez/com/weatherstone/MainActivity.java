@@ -75,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
         return new Consumer<APIResponse>() {
             @Override
             public void acceptData(APIResponse data) {
-                forecastRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                List<Period> dailyForeCast = data.getResponse().get(0).getPeriods();
-                weatherAdapter = new WeatherAdapter(dailyForeCast, isCelsius);
-                forecastRecyclerView.setAdapter(weatherAdapter);
+                if (data.isSuccess()) {
+                    forecastRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    List<Period> dailyForeCast = data.getResponse().get(0).getPeriods();
+                    weatherAdapter = new WeatherAdapter(dailyForeCast, isCelsius);
+                    forecastRecyclerView.setAdapter(weatherAdapter);
+                }
             }
         };
     }
