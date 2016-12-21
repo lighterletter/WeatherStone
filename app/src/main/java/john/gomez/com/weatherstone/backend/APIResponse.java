@@ -3,17 +3,12 @@ package john.gomez.com.weatherstone.backend;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import john.gomez.com.weatherstone.model.Period;
 import john.gomez.com.weatherstone.model.WeatherProfile;
 import john.gomez.com.weatherstone.model.WeatherResponse;
 
-/**
- * Created by john on 12/21/16.
- */
 
 public class APIResponse {
 
@@ -41,7 +36,7 @@ public class APIResponse {
     private static final String JSON_ICON= "icon";
 
 
-
+    //response fields
     private boolean success;
     private List<WeatherResponse> response;
 

@@ -9,13 +9,8 @@ import com.android.volley.toolbox.StringRequest;
 
 import john.gomez.com.weatherstone.BuildConfig;
 import john.gomez.com.weatherstone.Consumer;
-import john.gomez.com.weatherstone.backend.APIResponse;
 
 import static android.content.ContentValues.TAG;
-
-/**
- * Created by john on 12/21/16.
- */
 
 public class CallAPI {
 
