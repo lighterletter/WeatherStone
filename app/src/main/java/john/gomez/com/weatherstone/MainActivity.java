@@ -11,12 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-
 import java.util.List;
-
 import john.gomez.com.weatherstone.backend.APIResponse;
 import john.gomez.com.weatherstone.backend.CallAPI;
 import john.gomez.com.weatherstone.model.Period;

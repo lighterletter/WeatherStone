@@ -1,8 +1,6 @@
 package john.gomez.com.weatherstone.model;
 
-/**
- * Created by john on 12/21/16.
- */
+
 public class Period {
     private int minTempC;
     private int avgTempC;

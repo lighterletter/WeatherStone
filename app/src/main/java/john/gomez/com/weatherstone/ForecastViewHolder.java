@@ -1,25 +1,18 @@
 package john.gomez.com.weatherstone;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import john.gomez.com.weatherstone.model.Period;
 
-/**
- * Created by john on 12/21/16.
- */
 public class ForecastViewHolder extends RecyclerView.ViewHolder {
 
 
