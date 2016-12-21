@@ -41,6 +41,14 @@ public class APIResponse {
     private List<WeatherResponse> response;
 
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public List<WeatherResponse> getResponse() {
+        return response;
+    }
+
     public static APIResponse parse(String response) {
 
         try {
