@@ -17,11 +17,31 @@ import john.gomez.com.weatherstone.model.WeatherResponse;
 
 public class APIResponse {
 
+    //outer layer
     private static final String JSON_SUCCESS = "success";
     private static final String JSON_RESPONSE = "response";
+
+    //mid layer
     private static final String JSON_INTERVAL = "interval";
     private static final String JSON_PERIODS = "periods";
     private static final String JSON_PROFILE = "profile";
+    // profile timezone
+    private static final String JSON_TIMEZONE= "tz";
+
+    //lower layer
+    private static final String JSON_MIN_C = "minTempC";
+    private static final String JSON_AVG_C = "avgTempC";
+    private static final String JSON_MAX_C = "maxTempC";
+
+    private static final String JSON_MIN_F = "minTempF";
+    private static final String JSON_AVG_F = "avgTempF";
+    private static final String JSON_MAX_F = "maxTempF";
+
+    private static final String JSON_DATETIME = "dateTimeISO";
+    private static final String JSON_ICON= "icon";
+
+
+
     private boolean success;
     private List<WeatherResponse> response;
 
@@ -59,7 +79,7 @@ public class APIResponse {
 
             JSONObject profile = current.getJSONObject(JSON_PROFILE);
             WeatherProfile timeZone = new WeatherProfile();
-            timeZone.setTz(profile.getString("tz"));
+            timeZone.setTz(profile.getString(JSON_TIMEZONE));
             response.setProfile(timeZone);
 
             responseList.add(response);
@@ -72,17 +92,31 @@ public class APIResponse {
     }
 
     private static List<Period> parsePeriods(JSONArray periods) {
+        List<Period> weeklyWeather = new ArrayList<>();
         for (int index = 0; index < periods.length(); index++){
             try {
                 JSONObject current = periods.getJSONObject(index);
-                
+                Period thisDay = new Period();
+
+                thisDay.setMinTempC(current.getInt(JSON_MIN_C));
+                thisDay.setAvgTempC(current.getInt(JSON_AVG_C));
+                thisDay.setMaxTempC(current.getInt(JSON_MAX_C));
+
+                thisDay.setMinTempF(current.getInt(JSON_MIN_F));
+                thisDay.setAvgTempF(current.getInt(JSON_AVG_F));
+                thisDay.setMaxTempF(current.getInt(JSON_MAX_F));
+
+                thisDay.setDateTimeISO(current.getString(JSON_DATETIME));
+                thisDay.setIcon(current.getString(JSON_ICON));
+
+                weeklyWeather.add(thisDay);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
         }
-        return null;
+        return weeklyWeather;
     }
 
     private static APIResponse buildFailureCase() {
