@@ -1,16 +1,12 @@
 package john.gomez.com.weatherstone.backend;
 
 import android.util.Log;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import john.gomez.com.weatherstone.BuildConfig;
 import john.gomez.com.weatherstone.Consumer;
-
 import static android.content.ContentValues.TAG;
 
 public class CallAPI {

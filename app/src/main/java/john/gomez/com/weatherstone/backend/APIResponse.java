@@ -9,7 +9,6 @@ import john.gomez.com.weatherstone.model.Period;
 import john.gomez.com.weatherstone.model.WeatherProfile;
 import john.gomez.com.weatherstone.model.WeatherResponse;
 
-
 public class APIResponse {
 
     //outer layer
