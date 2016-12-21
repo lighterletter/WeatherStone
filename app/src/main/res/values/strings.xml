@@ -2,4 +2,6 @@
     <string name="app_name">WeatherStone</string>
     <string name="fahrenheit">℉</string>
     <string name="celsius">℃</string>
+
+
 </resources>

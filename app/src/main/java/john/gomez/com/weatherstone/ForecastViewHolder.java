@@ -10,6 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import john.gomez.com.weatherstone.model.Period;
 
@@ -43,42 +47,52 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder {
         return inflater.inflate(R.layout.forecast, parent, false);
     }
 
-    public void bind(Period forecast, boolean isCelsius){
+    public void bind(Period forecast, boolean isCelsius) {
 
-        if(isCelsius){
+        if (isCelsius) {
             bindCelsius(forecast);
         } else {
             bindFahrenheit(forecast);
         }
 
-        timeStamp.setText(forecast.getDateTimeISO());
+        timeStamp.setText(getDay(forecast.getDateTimeISO()));
         //setIcon
         Context context = iconIV.getContext();
         String iconId = forecast.getIcon();
-        int id = context.getResources().getIdentifier(iconId.substring(0,iconId.length() - 4), "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier(iconId.substring(0, iconId.length() - 4), "drawable", context.getPackageName());
         iconIV.setImageResource(id);
     }
 
     private void bindFahrenheit(Period forecast) {
-        averageTemp.setText(String.valueOf(forecast.getAvgTempF()));
-        minTemp.setText(String.valueOf(forecast.getMinTempF()));
-        maxTemp.setText(String.valueOf(forecast.getMaxTempF()));
+
+        String fahrenheit = rootView.getResources().getString(R.string.fahrenheit);
+
+        averageTemp.setText(String.format("Avg " + fahrenheit + ": %s ", String.valueOf(forecast.getAvgTempF())));
+        minTemp.setText(String.format("Min " + fahrenheit + ": %s ", String.valueOf(forecast.getMinTempF())));
+        maxTemp.setText(String.format("Max " + fahrenheit + ": %s ", String.valueOf(forecast.getMaxTempF())));
     }
 
     private void bindCelsius(Period forecast) {
-        averageTemp.setText(String.valueOf(forecast.getAvgTempC()));
-        minTemp.setText(String.valueOf(forecast.getMinTempC()));
-        maxTemp.setText(String.valueOf(forecast.getMaxTempC()));
+
+        String celsius = rootView.getResources().getString(R.string.celsius);
+
+        averageTemp.setText(String.format("Avg " + celsius + ": %s ", String.valueOf(forecast.getAvgTempC())));
+        minTemp.setText(String.format("Min " + celsius + ": %s ", String.valueOf(forecast.getMinTempC())));
+        maxTemp.setText(String.format("Max " + celsius + ": %s ", String.valueOf(forecast.getMaxTempC())));
     }
 
-    public static int getResId(String resName, Class<?> c) {
-
+    private String getDay(String date) {
+        date = date.substring(0,10);
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-mm-dd");
+        Date dt1 = null;
         try {
-            Field idField = c.getDeclaredField(resName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
+            dt1 = format1.parse(date);
+        } catch (ParseException e) {
             e.printStackTrace();
-            return -1;
         }
+        DateFormat format2 = new SimpleDateFormat("EEEE");
+        String finalDay = format2.format(dt1);
+        return finalDay + " " + date.substring(5);
     }
+
 }
