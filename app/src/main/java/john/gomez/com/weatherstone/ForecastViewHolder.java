@@ -1,11 +1,15 @@
 package john.gomez.com.weatherstone;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.reflect.Field;
 
 import john.gomez.com.weatherstone.model.Period;
 
@@ -49,6 +53,10 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder {
 
         timeStamp.setText(forecast.getDateTimeISO());
         //setIcon
+        Context context = iconIV.getContext();
+        String iconId = forecast.getIcon();
+        int id = context.getResources().getIdentifier(iconId.substring(0,iconId.length() - 4), "drawable", context.getPackageName());
+        iconIV.setImageResource(id);
     }
 
     private void bindFahrenheit(Period forecast) {
@@ -61,5 +69,16 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder {
         averageTemp.setText(String.valueOf(forecast.getAvgTempC()));
         minTemp.setText(String.valueOf(forecast.getMinTempC()));
         maxTemp.setText(String.valueOf(forecast.getMaxTempC()));
+    }
+
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }

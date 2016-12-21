@@ -15,7 +15,6 @@ import java.util.List;
 import john.gomez.com.weatherstone.backend.APIResponse;
 import john.gomez.com.weatherstone.backend.CallAPI;
 import john.gomez.com.weatherstone.model.Period;
-import john.gomez.com.weatherstone.model.WeatherResponse;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,10 +44,12 @@ public class MainActivity extends AppCompatActivity {
                 if (weatherAdapter != null) {
                     if (isCelsius == true) {
                         isCelsius = false;
+                        celsiusFlag.setText(R.string.fahrenheit);
                         weatherAdapter.setCelsius(isCelsius);
                         weatherAdapter.notifyDataSetChanged();
                     } else {
                         isCelsius = true;
+                        celsiusFlag.setText(R.string.celsius);
                         weatherAdapter.setCelsius(isCelsius);
                         weatherAdapter.notifyDataSetChanged();
                     }
