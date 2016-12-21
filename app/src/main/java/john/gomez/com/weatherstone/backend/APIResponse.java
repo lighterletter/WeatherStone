@@ -35,12 +35,17 @@ public class APIResponse {
     private static final String JSON_ICON= "icon";
 
 
+
+
     //response fields
     private boolean success;
     private List<WeatherResponse> response;
-    
+
     public List<WeatherResponse> getResponse() {
         return response;
+    }
+    public boolean isSuccess() {
+        return success;
     }
 
     public static APIResponse parse(String response) {
