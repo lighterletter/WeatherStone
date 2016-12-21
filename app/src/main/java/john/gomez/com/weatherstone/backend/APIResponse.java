@@ -38,12 +38,7 @@ public class APIResponse {
     //response fields
     private boolean success;
     private List<WeatherResponse> response;
-
-
-    public boolean isSuccess() {
-        return success;
-    }
-
+    
     public List<WeatherResponse> getResponse() {
         return response;
     }
